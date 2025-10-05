@@ -1,0 +1,3 @@
+[submodule "fake6502"]
+	path = fake6502
+	url = https://github.com/ivop/fake6502

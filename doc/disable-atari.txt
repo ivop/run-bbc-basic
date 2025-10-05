@@ -1,0 +1,26 @@
+Candidates to remove for Atari 8-Bit port:
+
+PTR#            ; unable to implement with DOS 2.x (or very VERY slow)
+PTR#=num        ; idem
+EXT#            ; idem
+
+SOUND           ; just "poke" Pokey directly
+ENVELOPE        ; idem
+
+ADVAL           ; there is no keyboard buffer
+
+POS             ; not really useful, cannot set like Atari basic POSITION
+VPOS            ; idem
+
+VDU             ; too BBC specific, requires a lot of code to emulate
+
+; Graphics
+
+CLG             ; xxx
+GCOL            ; SETCOLOR (?)
+COLOR/COLOUR    ; COLOR
+DRAW            ; DRAWTO
+MODE            ; GRAPHICS
+MOVE            ; POSITION
+PLOT            ; PLOT
+POINT           ; xxx

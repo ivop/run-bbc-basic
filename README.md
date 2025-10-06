@@ -42,6 +42,56 @@ Clone git repo, cd into it, and type ```make```. You shouldn't need anything bey
 On Windows, you might need to use cygwin. MSYS2 will probably not work, because it's missing getline().
 On macOS, any XCode should work. This has not been tested yet.
 
+### Example?
+
+```
+$ ./runbasic 
+
+BASIC
+>LOAD "test/FIBO.BAS"
+>L.
+   10 PRINT "RECURSIVE:"
+   20 S=TIME
+   30 PRINT "F(1) = ";FNFIBR(1)
+   40 PRINT "F(13) = ";FNFIBR(13)
+   50 PRINT "F(26) = ";FNFIBR(26)
+   60 PRINT "TIME ELAPSED = ";(TIME-S+50)/100;" SECONDS"
+   70 PRINT "ITERATIVE:"
+   80 S=TIME
+   90 PRINT "F(1) = ";FNFIBI(1)
+  100 PRINT "F(13) = ";FNFIBI(13)
+  110 PRINT "F(26) = ";FNFIBI(26)
+  120 PRINT "TIME ELAPSED = ";(TIME-S+50)/100;" SECONDS"
+  130 END
+  140 :
+  150 DEF FNFIBR(N)
+  160 IF N < 2 THEN = N
+  170 = FNFIBR(N-1) + FNFIBR(N-2)
+  180 :
+  190 DEF FNFIBI(N)
+  200 LOCAL F,I,P,T
+  210 IF N < 2 THEN = N
+  220 P = 1
+  230 FOR I=1 TO N
+  240   T=F
+  250   F=F+P
+  260   P=T
+  270 NEXT I
+  280 =F
+>RUN
+RECURSIVE:
+F(1) = 1
+F(13) = 233
+F(26) = 121393
+TIME ELAPSED = 23.85 SECONDS
+ITERATIVE:
+F(1) = 1
+F(13) = 233
+F(26) = 121393
+TIME ELAPSED = 0.5 SECONDS
+>
+```
+
 ### Credits
 
 Copyright © 2025 by Ivo van Poorten, licensed under the BSD 2-Clause License.

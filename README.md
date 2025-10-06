@@ -25,13 +25,6 @@ To interrupt a running program, press CTRL-C, and type ```OLD``` to get your pro
 To exit Basic all together, press CTRL-Z.
 Note that INKEY **does** use a raw keyboard polling routine, so pressing Escape when the program expects a single keypress works.
 
-### Free memory?
-
-```
->@%=&20108:PRINT (HIMEM-LOMEM)/1024;" kB"
-    44.0 kB
-```
-
 ### Why?
 
 This was mostly written to examine what minimal MOS functionality one needs to implement to get a mostly fully working BBC Basic, and how.
@@ -43,53 +36,35 @@ Clone git repo, cd into it, and type ```make```. You shouldn't need anything bey
 On Windows, you might need to use cygwin. MSYS2 will probably not work, because it's missing getline().
 On macOS, any XCode should work. This has not been tested yet.
 
-### Example?
+### Free memory?
+
+```
+>@%=&20108:PRINT (HIMEM-LOMEM)/1024;" kB"
+    44.0 kB
+```
+
+### Speed?
 
 ```
 $ ./runbasic 
 
 BASIC
->LOAD "test/FIBO.BAS"
->L.
-   10 PRINT "RECURSIVE:"
-   20 S=TIME
-   30 PRINT "F(1) = ";FNFIBR(1)
-   40 PRINT "F(13) = ";FNFIBR(13)
-   50 PRINT "F(26) = ";FNFIBR(26)
-   60 PRINT "TIME ELAPSED = ";(TIME-S+50)/100;" SECONDS"
-   70 PRINT "ITERATIVE:"
-   80 S=TIME
-   90 PRINT "F(1) = ";FNFIBI(1)
-  100 PRINT "F(13) = ";FNFIBI(13)
-  110 PRINT "F(26) = ";FNFIBI(26)
-  120 PRINT "TIME ELAPSED = ";(TIME-S+50)/100;" SECONDS"
-  130 END
-  140 :
-  150 DEF FNFIBR(N)
-  160 IF N < 2 THEN = N
-  170 = FNFIBR(N-1) + FNFIBR(N-2)
-  180 :
-  190 DEF FNFIBI(N)
-  200 LOCAL F,I,P,T
-  210 IF N < 2 THEN = N
-  220 P = 1
-  230 FOR I=1 TO N
-  240   T=F
-  250   F=F+P
-  260   P=T
-  270 NEXT I
-  280 =F
+>LOAD "test/CLOCKSP.BAS"
 >RUN
-RECURSIVE:
-F(1) = 1
-F(13) = 233
-F(26) = 121393
-TIME ELAPSED = 23.85 SECONDS
-ITERATIVE:
-F(1) = 1
-F(13) = 233
-F(26) = 121393
-TIME ELAPSED = 0.5 SECONDS
+BBC BASIC CPU Timing Program
+Real REPEAT loop       134.81MHz
+Variant REPEAT loop    134.38MHz
+Integer REPEAT loop    134.83MHz
+Real FOR loop          141.43MHz
+Variant FOR loop       140.88MHz
+Integer FOR loop       151.54MHz
+Trig/Log test          162.17MHz
+String manipulation    168.01MHz
+Procedure call         135.87MHz
+GOSUB call             147.31MHz
+Unweighted Average     145.12MHz
+
+Compared to a 2.00MHz BBC B
 >
 ```
 

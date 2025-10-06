@@ -23,7 +23,7 @@ Keyboard input is handled on a line-by-line basis (utilizing getline()) and ther
 This means that Escape does not work like you might be used to on a real BBC.
 To interrupt a running program, press CTRL-C, and type ```OLD``` to get your program back.
 To exit Basic all together, press CTRL-Z.
-Note that INKEY **does** use a raw keyboard polling routine, so pressing Escape when the program expects a single keypress does work.
+Note that INKEY **does** use a raw keyboard polling routine, so pressing Escape when the program expects a single keypress works.
 
 ### Free memory?
 

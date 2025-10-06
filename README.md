@@ -45,6 +45,8 @@ On macOS, any XCode should work. This has not been tested yet.
 
 ### Speed?
 
+Ran on an AMD FX(tm)-8320 Eight-Core Processor, single core, 3.5GHz, released October 2012.
+
 ```
 $ ./runbasic 
 

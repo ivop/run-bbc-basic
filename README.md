@@ -34,7 +34,7 @@ To exit Basic all together, press CTRL-Z.
 ### Why?
 
 This was mostly written to examine what minimal MOS functionality one needs to implement to get a mostly fully working BBC Basic, and how.
-I want to know this before starting a port in assembly on a new machine.
+I wanted to know this before starting a port in assembly on a new machine.
 
 ### Build instructions?
 
@@ -94,4 +94,5 @@ TIME ELAPSED = 0.5 SECONDS
 
 ### Credits
 
-Copyright © 2025 by Ivo van Poorten, licensed under the BSD 2-Clause License.
+Copyright © 2025 by Ivo van Poorten, licensed under the BSD 2-Clause License.  
+BBC Basic 3.10 is Copyright © 1983 by Acornsoft.

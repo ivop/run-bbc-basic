@@ -1,6 +1,6 @@
 CC=gcc
 #CFLAGS=-g3 -Wall -Wextra
-CFLAGS=-O2 -Wall -Wextra
+CFLAGS=-O3 -flto -Wall -Wextra
 
 runbasic: main.c fake6502/fake6502.c
 	$(CC) $(CFLAGS) -o $@ $^

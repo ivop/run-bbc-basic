@@ -54,17 +54,17 @@ BASIC
 >LOAD "test/CLOCKSP.BAS"
 >RUN
 BBC BASIC CPU Timing Program
-Real REPEAT loop       134.81MHz
-Variant REPEAT loop    134.38MHz
-Integer REPEAT loop    134.83MHz
-Real FOR loop          141.43MHz
-Variant FOR loop       140.88MHz
-Integer FOR loop       151.54MHz
-Trig/Log test          162.17MHz
-String manipulation    168.01MHz
-Procedure call         135.87MHz
-GOSUB call             147.31MHz
-Unweighted Average     145.12MHz
+Real REPEAT loop       188.49MHz
+Variant REPEAT loop    186.84MHz
+Integer REPEAT loop    192.00MHz
+Real FOR loop          197.68MHz
+Variant FOR loop       197.67MHz
+Integer FOR loop       218.89MHz
+Trig/Log test          222.00MHz
+String manipulation    234.67MHz
+Procedure call         192.56MHz
+GOSUB call             216.28MHz
+Unweighted Average     204.70MHz
 
 Compared to a 2.00MHz BBC B
 >

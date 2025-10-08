@@ -76,6 +76,30 @@ The same on b-em, Model B 32K:
 
 ![screenshot](doc/b-em-clocksp.png)
 
+And on an AMD Ryzen 5 5625U, released in 2022:
+
+```
+$ ./runbasic
+
+BASIC
+>LOAD "test/CLOCKSP.BAS"
+>RUN
+BBC BASIC CPU Timing Program
+Real REPEAT loop       443.75MHz
+Variant REPEAT loop    440.99MHz
+Integer REPEAT loop    552.99MHz
+Real FOR loop          570.79MHz
+Variant FOR loop       567.29MHz
+Integer FOR loop       628.74MHz
+Trig/Log test          531.78MHz
+String manipulation    475.80MHz
+Procedure call         565.89MHz
+GOSUB call             568.18MHz
+Unweighted Average     534.62MHz
+
+Compared to a 2.00MHz BBC B
+```
+
 ### Credits
 
 Copyright © 2025 by Ivo van Poorten, licensed under the BSD 2-Clause License.  

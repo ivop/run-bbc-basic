@@ -70,6 +70,10 @@ Compared to a 2.00MHz BBC B
 >
 ```
 
+The same on b-em, Model B 32K:
+
+![screenshot](doc/b-em-clocksp.png)
+
 ### Credits
 
 Copyright © 2025 by Ivo van Poorten, licensed under the BSD 2-Clause License.  

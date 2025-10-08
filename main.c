@@ -591,6 +591,7 @@ static void OSCLI(void) {
     for (i=0; mem[ptr+i] != 0x0d; i++)
         line[i] = mem[ptr+i];
     line[i] = 0;
+    if (!strcmp(line, "*QUIT") || !strcmp(line, "*quit")) exit(0);
     if (i>1) i = system(line+1);
 }
 

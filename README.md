@@ -16,6 +16,8 @@ Except for the graphics related functions and VDU in general, everything sort of
 Even TIME works, so you can compare its speed to real hardware.
 Star commands are passed to the shell, so you can do ```*ls```.
 All paths can be standard host paths, like ```LOAD "test/FIBO.BAS"```.
+```*quit``` will end the emulator.
+This is especially useful for automating scripted runs of test programs.
 
 ### Escape?
 

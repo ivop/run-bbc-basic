@@ -103,4 +103,4 @@ Compared to a 2.00MHz BBC B
 ### Credits
 
 Copyright © 2025 by Ivo van Poorten, licensed under the BSD 2-Clause License.  
-BBC Basic 3.10 is Copyright © 1983 by Acornsoft.
+BBC Basic 3.10 is Copyright © 1983 by Acorn.

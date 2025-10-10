@@ -623,10 +623,48 @@ static void trap(void) {
 
 // ----------------------------------------------------------------------------
 
+static char *words[] = {
+    "AND", "ABS", "ACS", "ADVAL", "ASC", "ASN", "ATN", "AUTO", "BGET",
+    "BPUT", "COLOUR", "COLOR", "CALL", "CHAIN", "CHR$", "CLEAR", "CLOSE",
+    "CLG", "CLS", "COS", "COUNT", "DATA", "DEG", "DEF", "DELETE", "DIV",
+    "DIM", "DRAW", "ENDPROC", "END", "ENVELOPE", "ELSE", "EVAL", "ERL",
+    "ERROR", "EOF", "EOR", "ERR", "EXP", "EXT", "FOR", "FALSE", "FN", "GOTO",
+    "GET$", "GET", "GOSUB", "GCOL", "HIMEM", "INPUT", "IF", "INKEY$",
+    "INKEY", "INT", "INSTR", "LIST", "LINE", "LOAD", "LOMEM", "LOCAL",
+    "LEFT$", "LEN", "LET", "LOG", "LN", "MID$", "MODE", "MOD", "MOVE", "NEXT",
+    "NEW", "NOT", "OLD", "ON", "OFF", "OR", "OPENIN", "OPENOUT", "OPENUP",
+    "OSCLI", "PRINT", "PAGE", "PTR", "PI", "PLOT", "POINT", "PROC", "POS",
+    "RETURN", "REPEAT", "REPORT", "READ", "REM", "RUN", "RAD", "RESTORE",
+    "RIGHT$", "RND", "RENUMBER", "STEP", "SAVE", "SGN", "SIN", "SQR", "SPC",
+    "STR$", "STRING$", "SOUND", "STOP", "TAN", "THEN", "TO", "TAB", "TRACE",
+    "TIME", "TRUE", "UNTIL", "USR", "VDU", "VAL", "VPOS", "WIDTH",
+    NULL
+};
+
+static char *completion_generator(const char *text, int state) {
+    static size_t match_index = 0, len = 0;
+    char *word;
+    if (!state) {
+        match_index = 0;
+        len = strlen(text);
+    }
+    while ((word = words[match_index++])) {
+        if (!strncmp(word, text, len)) return strdup(word);
+    }
+    return NULL;
+}
+
+static char ** completer(const char *text, int start UNUSED, int end UNUSED) {
+    rl_attempted_completion_over = 1;
+    return rl_completion_matches(text, completion_generator);
+}
+
+// ----------------------------------------------------------------------------
+
 int main(int argc UNUSED, char **argv UNUSED) {
     bool running = true;
 
-    rl_bind_key('\t', rl_insert);       // disable TAB completion
+    rl_attempted_completion_function = completer;
 
     load_rom(mos, "toprom/top.rom", sizeof(mos));
     load_rom(basic, "roms/basic310hi.rom", sizeof(basic));

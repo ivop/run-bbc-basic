@@ -21,11 +21,20 @@ This is especially useful for automating scripted runs of test programs.
 
 ### Escape?
 
-Keyboard input is handled on a line-by-line basis (utilizing getline()) and there is no keyboard polling loop running in the background.
+Keyboard input is handled on a line-by-line basis (utilizing readline()) and there is no keyboard polling loop running in the background.
 This means that Escape does not work like you might be used to on a real BBC.
 To interrupt a running program, press CTRL-C, and type ```OLD``` to get your program back.
 To exit Basic all together, press CTRL-Z.
 Note that INKEY **does** use a raw keyboard polling routine, so pressing Escape when the program expects a single keypress works.
+
+### Readline?
+
+The line input is handled by the readline library.
+That means you have full editing capabilities for each line, including line history, and command completion.
+It has a completion list of all BASIC keywords.
+Note that if the calling program printed a prompt, like BASIC's own '>' prompt, readline has no knowledge of that.
+That means that moving to the beginning of the line with Ctrl-a does not work as expected. You can remedy that by triggering a 'redisplay'
+by pressing Ctrl-L.
 
 ### Why?
 

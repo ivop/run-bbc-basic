@@ -39,6 +39,8 @@
 #include <signal.h>
 #include <setjmp.h>
 #include <ctype.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 #include "fake6502/fake6502.h"
 
 #ifdef __GNUC__
@@ -264,20 +266,15 @@ static void OSWORD(void) {
         uint8_t min = mem[ptr+3];
         uint8_t max = mem[ptr+4];
         char *lineptr = NULL;
-        size_t size = 0;
 
-        while (getline(&lineptr, &size, stdin) < 0) {
+        while (!(lineptr = readline(""))) {
             clearerr(stdin);    // ignore ctrl-D
         }
 
+        if (strlen(lineptr) > 0) add_history(lineptr);
+
         int j = 0;
-        for (unsigned i=0; i<size; i++) {
-            if (lineptr[i] == 0x0a) {
-                mem[buf+j] = 0x0d;
-                Y = j;
-                clear_carry();
-                return;
-            }
+        for (unsigned i=0; i<strlen(lineptr); i++) {
             if (lineptr[i] < min || lineptr[i] > max) continue;
             if (lineptr[i] == 27) {
                 mem[ESCFLG] = 0xff;
@@ -293,7 +290,12 @@ static void OSWORD(void) {
                 clear_carry();
                 return;
             }
+
         }
+        mem[buf+j] = 0x0d;
+        Y = j+1;
+        clear_carry();
+        return;
         break;
         }
     case 0x01: {            // Get system clock in centiseconds
@@ -623,6 +625,8 @@ static void trap(void) {
 
 int main(int argc UNUSED, char **argv UNUSED) {
     bool running = true;
+
+    rl_bind_key('\t', rl_insert);       // disable TAB completion
 
     load_rom(mos, "toprom/top.rom", sizeof(mos));
     load_rom(basic, "roms/basic310hi.rom", sizeof(basic));

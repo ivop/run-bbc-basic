@@ -1,9 +1,10 @@
 CC=gcc
 #CFLAGS=-g3 -Wall -Wextra
 CFLAGS=-O3 -flto -Wall -Wextra
+LFLAGS=-lreadline
 
 runbasic: main.c fake6502/fake6502.c
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^ $(LFLAGS)
 
 basic.inc: roms/basic310hi.rom
 	xxd -i $< > $@

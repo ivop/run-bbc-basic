@@ -51,6 +51,12 @@
 
 static sigjmp_buf jump_buffer;
 static void sig_handler(int _ UNUSED) {
+#if 0
+    rl_stuff_char('O');
+    rl_stuff_char('L');
+    rl_stuff_char('D');
+    rl_stuff_char('\n');
+#endif
     siglongjmp(jump_buffer,1);
 }
 static void sig_handler2(int _ UNUSED) {
@@ -666,6 +672,8 @@ int main(int argc UNUSED, char **argv UNUSED) {
     bool running = true;
 
     rl_attempted_completion_function = completer;
+    if (RL_VERSION_MAJOR >= 8)
+        rl_variable_bind ("enable-bracketed-paste", "off");
 
     load_rom(mos, "toprom/top.rom", sizeof(mos));
     load_rom(basic, "roms/basic310hi.rom", sizeof(basic));

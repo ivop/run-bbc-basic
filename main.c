@@ -656,6 +656,7 @@ static char *completion_generator(const char *text, int state) {
 
 static char ** completer(const char *text, int start UNUSED, int end UNUSED) {
     rl_attempted_completion_over = 1;
+    rl_completion_append_character = 0;   // no space after completion
     return rl_completion_matches(text, completion_generator);
 }
 

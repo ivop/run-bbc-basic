@@ -278,6 +278,7 @@ static void OSWORD(void) {
         }
 
         if (strlen(lineptr) > 0) add_history(lineptr);
+        else putchar('\n');
 
         int j = 0;
         for (unsigned i=0; i<strlen(lineptr); i++) {

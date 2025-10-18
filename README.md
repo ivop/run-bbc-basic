@@ -44,8 +44,8 @@ I wanted to know this before starting a port in assembly on a new machine.
 ### Build instructions?
 
 Clone git repo, cd into it, and type ```make```. You shouldn't need anything beyond a C compiler and its standard libary.
-On Windows, you might need to use cygwin. MSYS2 will probably not work, because it's missing getline().
-On macOS, any XCode should work. This has not been tested yet.
+On Windows, you might need to use cygwin. Not sure if MSYS2 will handle the POSIX signal stuff right. This has not been tested.
+macOS should work with readline from brew.
 
 ### Free memory?
 

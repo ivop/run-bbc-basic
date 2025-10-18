@@ -12,7 +12,7 @@ It's **NOT** a BBC emulator!
 
 ### What works?
 
-Except for the graphics related functions and VDU in general, everything sort of works.
+Except for sound, the graphics related functions and VDU in general, everything sort of works.
 Even TIME works, so you can compare its speed to real hardware.
 Star commands are passed to the shell, so you can do ```*ls```.
 All paths can be standard host paths, like ```LOAD "test/FIBO.BAS"```.

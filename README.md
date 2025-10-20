@@ -43,7 +43,7 @@ I wanted to know this before starting a port in assembly on a new machine.
 
 ### Build instructions?
 
-Clone git repo, cd into it, and type ```make```. You shouldn't need anything beyond a C compiler and its standard libary.
+Clone git repo, cd into it, and type ```make```. You'll need C compiler, its standard libary, and the readline library.
 On Windows, you might need to use cygwin. Not sure if MSYS2 will handle the POSIX signal stuff right. This has not been tested.
 macOS should work with readline from brew.
 

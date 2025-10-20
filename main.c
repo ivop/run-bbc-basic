@@ -607,6 +607,7 @@ static void OSCLI(void) {
 // ----------------------------------------------------------------------------
 
 static void trap(void) {
+    //printf("trap: PC=%04x, A=%02x, X=%02x, Y=%02x\n", PC, A, X, Y);
     switch (PC) {
     case 0xffce:    OSFIND();   break;
     case 0xffd4:    OSBPUT();   break;

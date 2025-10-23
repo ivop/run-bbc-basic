@@ -203,7 +203,7 @@ static void OSBYTE(void) {
                     clear_carry();
                 }
                 reset_terminal_mode();
-                break;
+                return;
             }
             gettimeofday(&now, NULL);
             now.tv_sec -= start_time.tv_sec;

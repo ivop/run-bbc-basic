@@ -424,7 +424,8 @@ static void OSFILE(void) {
             fflush(stdout);
             return;
         }
-        if (fwrite(&mem[pblock.save], pblock.end - pblock.save + 1, 1, f)!=1){
+        // length is end-save, not +1
+        if (fwrite(&mem[pblock.save], pblock.end - pblock.save, 1, f)!=1){
             puts("Error writing file");
             fflush(stdout);
         } else { 

@@ -332,6 +332,10 @@ static void OSWORD(void) {
             start_time.tv_usec = now.tv_usec - (new%100)*10000;
         }
         break;
+    case 0x07:  // SOUND
+        break;
+    case 0x08:  // ENVELOPE
+        break;
     case 0x09: {            // Read pixel value at XY+ (two words X,Y)
             uint16_t ptr = X + (Y<<8);
             mem[ptr+4] = 0xff;          // return off screen

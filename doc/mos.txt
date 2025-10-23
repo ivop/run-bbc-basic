@@ -1,7 +1,7 @@
 Used by BBC BASIC (MOS BBC API):
 
 OSBYTE  $7E, $7F, $80, $81, $82, $83, $84, $85, $86, $DA
-OSWORD  $00, $01, $02, $09
+OSWORD  $00, $01, $02, $07, $08, $09
 
 OSWRCH
 OSRDCH

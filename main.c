@@ -597,6 +597,80 @@ static void OSARGS(void) {
 
 // ----------------------------------------------------------------------------
 
+static void starloadsave(char *args, bool save) {
+    // silly hack because of char fname[] being variable
+    if (false) {
+error:
+    puts("Syntax error");
+    return;
+    }
+
+    long start, end;
+    char *p = args;
+    while (isspace(*p)) p++;
+
+    if (*p++ != '"') goto error;
+    int s = 0;
+    char *q = p;
+    while (*p != 0 && *p != '"') p++, s++;
+    if (!*p) goto error;
+    char fname[s+1];
+    for (int i=0; i<s; i++) fname[i]=q[i];
+    fname[s] = 0;
+    p++;
+
+    while (isspace(*p)) p++;
+
+    if (!*p) goto error;
+
+    start = strtol(p, &q, 16);
+    p = q;
+
+    if (save) {
+        if (!*p) goto error;
+        if (!isspace(*p)) goto error;
+
+        while (isspace(*p)) p++;
+
+        if (!*p) goto error;
+        end = strtol(p, &q, 16);
+        p = q;
+    }
+
+    while (isspace(*p)) p++;
+
+    if (*p) goto error;         // should be end of string now
+
+    // execute command
+
+    if (!save) end = 0xffff;
+
+    if (start < 0 || start > 0xffff) {
+        puts("start out of range");
+        return;
+    }
+    if (save && (end < 0 || end > 0xffff || end < start)) {
+        puts("end out of range");
+        return;
+    }
+
+    FILE *f = fopen(fname, save ? "wb" : "rb");
+    if (!f) {
+        puts("unable to open file");
+        return;
+    }
+
+    long len = end-start+1, r UNUSED;
+
+    if (save) fwrite(&mem[start], 1, len, f);
+    else      r = fread(&mem[start], 1, len, f);
+
+    fclose(f);
+
+    return;
+
+}
+
 static void OSCLI(void) {
     uint16_t ptr = X + (Y<<8);
     int i;
@@ -606,7 +680,9 @@ static void OSCLI(void) {
         line[i] = mem[ptr+i];
     line[i] = 0;
     if (!strcmp(line, "*QUIT") || !strcmp(line, "*quit")) exit(0);
-    if (i>1) i = system(line+1);
+    else if (!strncmp(line, "*SAVE", 5)) starloadsave(line+5, true);
+    else if (!strncmp(line, "*LOAD", 5)) starloadsave(line+5, false);
+    else if (i>1) i = system(line+1);
 }
 
 // ----------------------------------------------------------------------------
